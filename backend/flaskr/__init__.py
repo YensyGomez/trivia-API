@@ -199,22 +199,22 @@ def create_app(test_config=None):
   @app.route('/quizzes', methods=['POST'])
   def play_quiz():
 
-      body = request.get_json()
-      category = body.get('quiz_category')
-      before_questions= body.get('previous_questions')
+    body = request.get_json()
+    category = body.get('quiz_category')
+    before_questions= body.get('previous_questions')
 
-      if category['type'] == 'click':
-          new_question = Question.query.filter(
-              Question.id.notin_((before_questions))).first()
+    if category['type'] == 'click':
+        new_question = Question.query.filter(
+            Question.id.notin_((before_questions))).first()
 
-      else:
-          new_question = Question.query.filter_by(
-              category=category['id']).filter(Question.id.notin_((before_questions))).first()
+    else:
+        new_question = Question.query.filter_by(
+            category=category['id']).filter(Question.id.notin_((before_questions))).first()
 
-      return jsonify({
-          'success': True,
-          'question': new_question.format() if new_question else None,
-      })
+    return jsonify({
+        'success': True,
+        'question': new_question.format() if new_question else None,
+    })
   '''
   @TODO: 
   Create error handlers for all expected errors 
@@ -222,18 +222,18 @@ def create_app(test_config=None):
   '''
   @app.errorhandler(404)
   def not_found(error):
-      return jsonify({
-          "success": False,
-          "error": 404,
-          "message": "resource not found"
-      }), 404
+    return jsonify({
+        "success": False,
+        "error": 404,
+        "message": "resource not found"
+    }), 404
   @app.errorhandler(422)
   def unprocessable(error):
-      return jsonify({
-          "success": False,
-          "error": 422,
-          "message": "unprocessable"
-      }), 422
+    return jsonify({
+        "success": False,
+        "error": 422,
+        "message": "unprocessable"
+    }), 422
 
   
   return app
