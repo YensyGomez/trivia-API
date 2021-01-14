@@ -71,7 +71,7 @@ def create_app(test_config=None):
 
     categories = Category.query.all()
 
-    if len(current_questions) < 0:
+    if len(current_questions) == 0:
       abort(404)
 
     return jsonify({
