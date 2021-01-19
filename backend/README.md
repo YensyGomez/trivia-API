@@ -111,6 +111,7 @@ Fetches a dictionary of all available categories
 
 ```
 GET `\questions?page=<page_number>` 
+```
 {
   "categories": [
     "Science",
@@ -196,6 +197,7 @@ GET `\questions?page=<page_number>`
   "success": true,
   "total_questions": 21
 }
+```
 
 DELETE `/questions/<question_id>`
 Delete an existing questions from the repository of available questions
