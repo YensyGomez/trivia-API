@@ -172,7 +172,7 @@ def create_app(test_config=None):
   '''
   @app.route('/categories/<int:category_id>/questions', methods=['GET'])
   def retrieve_questions_by_category(category_id):
-    questions = Question.query.filter(Question.category == category_id).all()
+    questions = Question.query.filter(Question.category == str(category_id)).all()
 
     if len(questions) == 0:
         abort(404)

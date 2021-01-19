@@ -149,7 +149,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertTrue(len(data['questions']))
         self.assertTrue(data['total_questions'])
         self.assertTrue(data['current_category'])
-    
+
     def test_404_get_questions_per_category(self):
         res = self.client().get('/categories/a/questions')
         data = json.loads(res.data)
@@ -157,6 +157,7 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 404)
         self.assertEqual(data["success"], False)
         self.assertEqual(data["message"], "resource not found")
+
 
     def test_play_quiz(self):
         new_quiz_round = {'previous_questions': [],
